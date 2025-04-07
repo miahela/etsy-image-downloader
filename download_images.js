@@ -16,11 +16,11 @@ const axios = require('axios');
  * @returns {string} The formatted image URL
  */
 function formatImageUrl(imgUrl) {
-    if (imgUrl.includes('/iap/')) {
+    if (imgUrl.includes('iap_')) {
         return imgUrl.replace(/iap_[0-9]+x[0-9]+/, 'iap_640x640');
-    } else if (imgUrl.includes('/il/')) {
+    } else if (imgUrl.includes('il_')) {
         return imgUrl.replace(/il_[0-9]+x[0-9]+/, 'il_570x456');
-    } else if (imgUrl.includes('/iusa/')) {
+    } else if (imgUrl.includes('iusa_')) {
         return imgUrl.replace(/iusa_[0-9]+x[0-9]+/, 'iusa_400x400');
     }
     return imgUrl;
@@ -35,7 +35,14 @@ function formatImageUrl(imgUrl) {
 function getFilenameFromUrl(imgUrl) {
     const parts = imgUrl.split('/');
     const lastPart = parts[parts.length - 1];
-    return lastPart.split('?')[0];
+    const filename = lastPart.split('?')[0];
+
+    // Extract just the ID and extension
+    const match = filename.match(/[^_]+\.([a-zA-Z0-9]+)$/);
+    if (match) {
+        return match[0];
+    }
+    return filename;
 }
 
 /**
