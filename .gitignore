@@ -1,0 +1,31 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Downloaded data
+/Result
+/Images
+
+# JSON data files (often large and may contain sensitive info)
+total_etsy_shop_reviews.json
+*.json
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+.repopackignore
+repopack-output.txt
